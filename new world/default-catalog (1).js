@@ -1,0 +1,23 @@
+/**
+ * lib/default-catalog.js
+ * Seed data written to Redis the first time api/catalog.js runs and finds
+ * nothing there yet. After that, all edits go through the admin panel and
+ * live in Redis — this file is only ever read again if the key is deleted.
+ */
+
+module.exports = [
+  { id: "coffee-cup",        category: "product",  group: "Coffee",     name: "Signature Cup of Coffee",     unit: "per cup",     price: 250,  image: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=800&auto=format&fit=crop", description: "Our house blend, brewed fresh to order." },
+  { id: "roasted-beans",     category: "product",  group: "Coffee",     name: "Roasted Coffee Beans (250g)",  unit: "per bag",     price: 900,  image: "https://images.unsplash.com/photo-1447933601403-0c6688de566e?q=80&w=800&auto=format&fit=crop", description: "Locally roasted beans, ground or whole, to take home." },
+  { id: "coffee-experience", category: "product",  group: "Coffee",     name: "Coffee Tasting Experience",    unit: "per person",  price: 600,  image: "https://images.unsplash.com/photo-1521017432531-fbd92d768814?q=80&w=800&auto=format&fit=crop", description: "A guided tasting for friends or teams, best enjoyed together." },
+  { id: "classic-burger",    category: "product",  group: "Food",       name: "Sypher Classic Beef Burger",   unit: "per burger",  price: 650,  image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=800&auto=format&fit=crop", description: "Grilled beef patty, cheddar, house sauce, toasted bun." },
+  { id: "chicken-burger",    category: "product",  group: "Food",       name: "Sypher Crispy Chicken Burger", unit: "per burger",  price: 600,  image: "https://images.unsplash.com/photo-1550317138-10000687a72b?q=80&w=800&auto=format&fit=crop", description: "Crispy fried chicken, slaw and spiced mayo." },
+  { id: "milkshake-choc",    category: "product",  group: "Milkshakes", name: "Chocolate Milkshake",          unit: "per glass",   price: 350,  image: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?q=80&w=800&auto=format&fit=crop", description: "Rich, thick and topped with whipped cream." },
+  { id: "milkshake-vanilla", category: "product",  group: "Milkshakes", name: "Vanilla Milkshake",            unit: "per glass",   price: 350,  image: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?q=80&w=800&auto=format&fit=crop", description: "Classic and creamy, made with real vanilla." },
+  { id: "juice-mango",       category: "product",  group: "Fresh Juice",name: "Fresh Mango Juice",             unit: "per glass",   price: 300,  image: "https://images.unsplash.com/photo-1622597467836-f3285f2131b8?q=80&w=800&auto=format&fit=crop", description: "Ripe mango, blended fresh daily." },
+  { id: "juice-passion",     category: "product",  group: "Fresh Juice",name: "Fresh Passion Juice",           unit: "per glass",   price: 300,  image: "https://images.unsplash.com/photo-1600271886742-f049cd451bba?q=80&w=800&auto=format&fit=crop", description: "Tangy passion fruit, freshly squeezed." },
+  { id: "juice-watermelon",  category: "product",  group: "Fresh Juice",name: "Fresh Watermelon Juice",        unit: "per glass",   price: 300,  image: "https://images.unsplash.com/photo-1589734435845-7c5cd7c0b3d2?q=80&w=800&auto=format&fit=crop", description: "Cool, light and naturally sweet." },
+  { id: "pool",              category: "facility", group: "Facilities", name: "Swimming Pool Access",         unit: "per day",     price: 800,  image: "https://images.unsplash.com/photo-1519046904884-53103b34b206?q=80&w=800&auto=format&fit=crop", description: "Full-day access to our outdoor pool." },
+  { id: "conference",        category: "facility", group: "Facilities", name: "Conference Hall",              unit: "per hour",    price: 8000, image: "https://images.unsplash.com/photo-1517502884422-41eaead166d4?q=80&w=800&auto=format&fit=crop", description: "Seats up to 40, projector and Wi-Fi included." },
+  { id: "merry-go-round",    category: "facility", group: "Facilities", name: "Merry-Go-Round (Kids Play)",   unit: "per session", price: 200,  image: "https://images.unsplash.com/photo-1594751543129-6701ad444259?q=80&w=800&auto=format&fit=crop", description: "A fun ride for the little ones while you relax." },
+  { id: "botanical-garden",  category: "facility", group: "Facilities", name: "Botanical Garden Entry",       unit: "per person",  price: 300,  image: "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?q=80&w=800&auto=format&fit=crop", description: "Stroll through our garden of native plants and flowers." },
+];

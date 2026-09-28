@@ -1,0 +1,26 @@
+# Copy this file to .env.local for local `vercel dev` testing, and add the
+# same values in Vercel dashboard → Settings → Environment Variables for
+# your deployed site.
+
+# --- Redis (auto-filled if you connect Upstash via the Vercel Marketplace) ---
+UPSTASH_REDIS_REST_URL=
+UPSTASH_REDIS_REST_TOKEN=
+
+# --- Admin login ---
+# Default password for the hash below is: sypher-admin-2026
+# CHANGE THIS before launch — generate a new hash with:
+#   node -e "console.log(require('./lib/auth').hashPassword('your-new-password'))"
+ADMIN_PASSWORD_HASH=scrypt:4dcb6455481f08ab26c088aab2406384:10df049b96334a63d9a260ab6d222385ca9ddfbdb07fa08dded796a54aee5835b32e8c8c8e5f8b67f6e9bc4dbbb5cba2eb79ac90dd04840600f5977fa049b65b
+
+# Any long random string — used to sign admin session cookies. Generate one with:
+#   node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+ADMIN_SESSION_SECRET=
+
+# --- Payzaapi (leave blank to run in demo mode — see lib/payzaapi.js) ---
+PAYZAAPI_API_KEY=
+PAYZAAPI_BASE_URL=
+PAYZAAPI_CALLBACK_URL=https://your-deployed-domain.vercel.app/api/payzaapi-callback
+
+# --- Receipts via Resend (leave blank to log receipts instead of sending) ---
+RESEND_API_KEY=
+RESEND_FROM_EMAIL=Sypher Coffee Joint <receipts@yourdomain.com>

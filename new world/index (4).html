@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sypher Coffee Joint — Coffee, Food &amp; Leisure in Nairobi</title>
+<meta name="description" content="Reserve a table at Sypher Coffee Joint — coffee, food, milkshakes, fresh juice and leisure facilities in Nairobi. Pay 25% now, settle the rest on your visit.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,600;0,700;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ============ TOP BAR / TABS ============ -->
+<header class="topbar">
+  <div class="topbar__inner">
+    <a href="#home" class="brand" data-tab="home">
+      <span class="brand__mark">Sypher Coffee Joint</span>
+      <span class="brand__tag">Nairobi</span>
+    </a>
+
+    <nav class="tabs tabs-scroll" aria-label="Main sections">
+      <button class="tabs__btn is-active" data-tab="home">Home</button>
+      <button class="tabs__btn" data-tab="products">Our Products &amp; Services</button>
+      <button class="tabs__btn" data-tab="reserve">Reserve a Table</button>
+      <button class="tabs__btn" data-tab="pricing">Pricing</button>
+      <button class="tabs__btn" data-tab="testimonials">Testimonials</button>
+    </nav>
+
+    <button class="topbar__cta" data-tab="reserve">Reserve a table</button>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============ HOME / HERO ============ -->
+  <section id="home" class="panel is-active" data-panel="home">
+    <div class="hero">
+      <img class="hero__img" src="https://images.unsplash.com/photo-1498804103079-a6351b050096?q=80&w=1600&auto=format&fit=crop" alt="Barista preparing a cup of coffee with latte art at Sypher Coffee Joint">
+      <div class="hero__scrim"></div>
+      <div class="hero__content">
+        <span class="hero__eyebrow">Nairobi's favourite coffee stop</span>
+        <h1>Great coffee, good food, and a place to unwind</h1>
+        <p>From a perfectly pulled espresso to a full day by the pool, Sypher Coffee Joint brings coffee, food and leisure together in one spot. Reserve your table and pay just 25% to lock it in.</p>
+        <div class="hero__actions">
+          <button class="btn btn--primary" data-tab="reserve">Reserve a table</button>
+          <button class="btn btn--ghost" data-tab="products">See our menu</button>
+        </div>
+        <div class="hero__insets">
+          <div class="hero__inset"><img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=300&auto=format&fit=crop" alt="Close-up of a cup of coffee"></div>
+          <div class="hero__inset"><img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?q=80&w=300&auto=format&fit=crop" alt="Friends enjoying coffee together"></div>
+          <span class="hero__inset-label">Loved by regulars across Nairobi</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="container section--tight">
+      <div class="section__head">
+        <span class="section__kicker">Why guests choose us</span>
+        <h2>More than a coffee shop</h2>
+      </div>
+      <div class="item-grid" style="grid-template-columns:repeat(auto-fill,minmax(220px,1fr));">
+        <div class="mini-card"><h3>Fresh, local, daily</h3><p>Coffee roasted locally, juice blended fresh, and food made to order.</p></div>
+        <div class="mini-card"><h3>25% now, rest later</h3><p>Reserve your table and facilities with a small deposit — settle the balance on your visit.</p></div>
+        <div class="mini-card"><h3>Room to relax</h3><p>Pool, garden, conference hall and play area for the whole family or your team.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ OUR PRODUCTS & SERVICES (showcase) ============ -->
+  <section class="panel" data-panel="products">
+    <div class="container section">
+      <div class="section__head">
+        <span class="section__kicker">What we offer</span>
+        <h2>Our products &amp; services</h2>
+        <p>Coffee, food, drinks and leisure facilities — all in one place.</p>
+      </div>
+      <div id="products-showcase"><!-- injected by script.js --></div>
+    </div>
+  </section>
+
+  <!-- ============ RESERVE A TABLE ============ -->
+  <section class="panel" data-panel="reserve">
+    <div class="container section">
+      <div class="section__head">
+        <span class="section__kicker">Book your visit</span>
+        <h2>Reserve a table</h2>
+      </div>
+
+      <div class="booking-flow__steps">
+        <span class="step-pill" data-step-pill="1">1 · Choose items</span>
+        <span class="step-pill" data-step-pill="2">2 · Your details</span>
+        <span class="step-pill" data-step-pill="3">3 · Payment</span>
+      </div>
+
+      <!-- Step 1: select items -->
+      <div data-step="1">
+        <div id="reserve-selection"><!-- injected by script.js --></div>
+      </div>
+
+      <!-- Step 2: guest details -->
+      <div data-step="2" style="display:none">
+        <div class="booking-summary" style="margin-bottom:24px" id="summary-step2"></div>
+        <form id="reserve-form" class="form-grid">
+          <div class="field">
+            <label for="full-name">Full name</label>
+            <input type="text" id="full-name" name="full_name" required placeholder="e.g. Brian Otieno">
+          </div>
+          <div class="field">
+            <label for="phone">Phone number</label>
+            <input type="tel" id="phone" name="phone" required placeholder="07XX XXX XXX">
+          </div>
+          <div class="field">
+            <label for="email">Email address</label>
+            <input type="email" id="email" name="email" required placeholder="you@example.com">
+          </div>
+          <div class="field">
+            <label for="visit-date">Visit date</label>
+            <input type="date" id="visit-date" name="visit_date" required>
+          </div>
+          <div class="field">
+            <label for="visit-time">Visit time</label>
+            <input type="time" id="visit-time" name="visit_time" required>
+          </div>
+          <div class="field">
+            <label for="party-size">Party size</label>
+            <input type="number" id="party-size" name="party_size" min="1" value="1" required>
+          </div>
+          <div class="field">
+            <label for="notes">Notes (optional)</label>
+            <input type="text" id="notes" name="notes" placeholder="Anything we should know">
+          </div>
+        </form>
+        <div style="display:flex; gap:12px; margin-top:8px;">
+          <button class="btn btn--ghost" style="color:var(--brown); border-color:var(--brown)" data-back-to="1">Back</button>
+          <button class="btn btn--dark" id="to-payment-btn">Continue to payment</button>
+        </div>
+      </div>
+
+      <!-- Step 3: payment -->
+      <div data-step="3" style="display:none">
+        <div class="payment-box">
+          <span class="payment-box__label">Amount due now (25% deposit)</span>
+          <div class="payment-box__amount" id="deposit-amount">KSh 0</div>
+          <span class="payment-box__label">Full total: <strong id="full-amount">KSh 0</strong></span>
+
+          <p class="pay-note">Reserve with 25% of the total as a deposit, then finish the rest on your visiting day. A receipt is emailed to you once payment is confirmed.</p>
+
+          <div class="pay-methods" role="group" aria-label="Payment method">
+            <button type="button" class="pay-method is-active" data-method="mpesa">M-Pesa (via Payzaapi)</button>
+          </div>
+
+          <button class="btn btn--primary" id="pay-btn" style="width:100%; justify-content:center">Proceed with payment</button>
+          <div id="pay-status" class="status-msg"></div>
+        </div>
+        <button class="btn btn--ghost" style="color:var(--brown); border-color:var(--brown); margin-top:16px" data-back-to="2">Back to details</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ PRICING ============ -->
+  <section class="panel" data-panel="pricing">
+    <div class="container section">
+      <div class="section__head">
+        <span class="section__kicker">Rates</span>
+        <h2>Pricing</h2>
+        <p>All prices in Kenyan shillings. Reserve any item with a 25% deposit — settle the rest on your visit day.</p>
+      </div>
+      <table class="pricing-table" id="pricing-table">
+        <thead><tr><th>Item</th><th>Category</th><th>Unit</th><th>Price</th></tr></thead>
+        <tbody><!-- injected by script.js --></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ TESTIMONIALS ============ -->
+  <section class="panel" data-panel="testimonials">
+    <div class="container section">
+      <div class="section__head">
+        <span class="section__kicker">Kind words</span>
+        <h2>What our guests say</h2>
+      </div>
+      <div class="testimonial-grid">
+        <div class="testimonial-card">
+          <div class="testimonial-card__stars">★★★★★</div>
+          <p>"The coffee here is easily the best I've had in Nairobi. We reserved a table for the whole team and the conference hall booking was seamless."</p>
+          <div class="testimonial-card__who">
+            <div class="testimonial-card__avatar"><img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?q=80&w=200&auto=format&fit=crop" alt="Portrait of Wanjiku M."></div>
+            <div><div class="testimonial-card__name">Wanjiku M.</div><div class="testimonial-card__loc">Kilimani, Nairobi</div></div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-card__stars">★★★★★</div>
+          <p>"Took the kids for the merry-go-round and botanical garden on a Saturday — everyone had a great time, and the burgers were a nice bonus."</p>
+          <div class="testimonial-card__who">
+            <div class="testimonial-card__avatar"><img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=200&auto=format&fit=crop" alt="Portrait of David K."></div>
+            <div><div class="testimonial-card__name">David K.</div><div class="testimonial-card__loc">Karen, Nairobi</div></div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-card__stars">★★★★★</div>
+          <p>"Booking online was so easy — paid a small deposit, showed up, and the rest was sorted on the spot. Will be back for the pool day pass."</p>
+          <div class="testimonial-card__who">
+            <div class="testimonial-card__avatar"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&auto=format&fit=crop" alt="Portrait of Amina H."></div>
+            <div><div class="testimonial-card__name">Amina H.</div><div class="testimonial-card__loc">Westlands, Nairobi</div></div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-card__stars">★★★★★</div>
+          <p>"The passion fruit juice is unreal, and the roasted beans I bought to take home lasted exactly one week before I was back for more."</p>
+          <div class="testimonial-card__who">
+            <div class="testimonial-card__avatar"><img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=200&auto=format&fit=crop" alt="Portrait of Kevin O."></div>
+            <div><div class="testimonial-card__name">Kevin O.</div><div class="testimonial-card__loc">South B, Nairobi</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ STICKY RESERVE BAR ============ -->
+<div class="booking-bar" id="booking-bar">
+  <div class="booking-bar__inner">
+    <div class="booking-bar__summary">
+      <span class="booking-bar__count" id="bar-count">0 items selected</span><br>
+      <strong id="bar-total">KSh 0</strong>
+    </div>
+    <button class="btn btn--primary" id="reserve-now-btn">Reserve Now</button>
+  </div>
+</div>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__brand">Sypher Coffee Joint</div>
+        <p style="color:rgba(255,255,255,.75); font-size:0.9rem; max-width:32ch;">Coffee, food and leisure in Nairobi — reserved simply, paid safely.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul class="footer__list">
+          <li><a href="#" data-tab="products">Our Products &amp; Services</a></li>
+          <li><a href="#" data-tab="reserve">Reserve a Table</a></li>
+          <li><a href="#" data-tab="pricing">Pricing</a></li>
+          <li><a href="#" data-tab="testimonials">Testimonials</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact us</h4>
+        <ul class="footer__list">
+          <li>WhatsApp: +254 703 942 775</li>
+        </ul>
+        <a class="whatsapp-link" href="https://wa.me/254703942775" target="_blank" rel="noopener">
+          <svg class="whatsapp-icon" viewBox="0 0 32 32" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M16.02 3C9.4 3 4 8.4 4 15.02c0 2.5.73 4.83 2 6.78L4 29l7.4-1.94a11.97 11.97 0 0 0 4.62.93h.01c6.62 0 12.02-5.4 12.02-12.02C28.05 8.4 22.65 3 16.02 3Zm0 21.9h-.01a9.9 9.9 0 0 1-5.05-1.38l-.36-.22-4.39 1.15 1.17-4.28-.24-.44a9.86 9.86 0 0 1-1.51-5.24c0-5.46 4.45-9.9 9.93-9.9 2.65 0 5.14 1.03 7.01 2.9a9.84 9.84 0 0 1 2.9 7.01c0 5.47-4.45 9.9-9.92 9.9Zm5.44-7.41c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.65.07-.3-.15-1.24-.46-2.37-1.47-.87-.78-1.46-1.74-1.63-2.03-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.06 2.88 1.21 3.08c.15.2 2.09 3.19 5.06 4.47.71.3 1.26.49 1.69.62.71.23 1.35.2 1.86.12.57-.08 1.76-.72 2-1.42.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35Z"/></svg>
+          <span>Chat on WhatsApp</span>
+        </a>
+        <div class="social-row">
+          <a href="#" aria-label="Facebook (add your page link)" title="Facebook — add your page link">f</a>
+          <a href="#" aria-label="Instagram (add your profile link)" title="Instagram — add your profile link">ig</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© <span id="year"></span> Sypher Coffee Joint. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<a class="whatsapp-float" href="https://wa.me/254703942775" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
+  <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><path fill="currentColor" d="M16.02 3C9.4 3 4 8.4 4 15.02c0 2.5.73 4.83 2 6.78L4 29l7.4-1.94a11.97 11.97 0 0 0 4.62.93h.01c6.62 0 12.02-5.4 12.02-12.02C28.05 8.4 22.65 3 16.02 3Zm0 21.9h-.01a9.9 9.9 0 0 1-5.05-1.38l-.36-.22-4.39 1.15 1.17-4.28-.24-.44a9.86 9.86 0 0 1-1.51-5.24c0-5.46 4.45-9.9 9.93-9.9 2.65 0 5.14 1.03 7.01 2.9a9.84 9.84 0 0 1 2.9 7.01c0 5.47-4.45 9.9-9.92 9.9Zm5.44-7.41c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.65.07-.3-.15-1.24-.46-2.37-1.47-.87-.78-1.46-1.74-1.63-2.03-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.06 2.88 1.21 3.08c.15.2 2.09 3.19 5.06 4.47.71.3 1.26.49 1.69.62.71.23 1.35.2 1.86.12.57-.08 1.76-.72 2-1.42.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35Z"/></svg>
+</a>
+
+<script src="script.js"></script>
+</body>
+</html>

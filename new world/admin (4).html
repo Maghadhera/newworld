@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin — Sypher Coffee Joint</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  body{ display:flex; align-items:flex-start; justify-content:center; min-height:100vh; background:var(--cream); }
+  .admin-wrap{ max-width:640px; width:100%; margin:0 auto; padding:40px 24px 80px; }
+  .login-box{ background:var(--white); border:1px solid var(--line); border-radius:var(--radius-lg); padding:32px; max-width:360px; margin:60px auto 0; }
+  .admin-head{ display:flex; justify-content:space-between; align-items:center; margin-bottom:24px; }
+  .price-row{ display:flex; align-items:center; justify-content:space-between; gap:14px; padding:10px 0; border-bottom:1px solid var(--line); }
+  .price-row:last-child{ border-bottom:none; }
+  .price-row__name{ font-size:0.95rem; }
+  .price-row__unit{ font-size:0.78rem; color:var(--text-soft); }
+  .price-row input{ width:120px; padding:8px 10px; border:1px solid var(--line); border-radius:6px; text-align:right; font-family:var(--sans); }
+  .banner{ padding:10px 14px; border-radius:6px; font-size:0.88rem; margin-bottom:18px; display:none; }
+  .banner.is-visible{ display:block; }
+  .banner--ok{ background:#E3F3E7; color:#1E5B32; }
+  .banner--err{ background:#FBE3E3; color:#7A1F1F; }
+  [hidden]{ display:none !important; }
+</style>
+</head>
+<body>
+
+  <div id="login-view" class="login-box">
+    <h2>Admin login</h2>
+    <p style="font-size:0.85rem;">Edit product, food and facility prices for Sypher Coffee Joint.</p>
+    <div id="login-error" class="banner banner--err"></div>
+    <form id="login-form" class="form-grid" style="max-width:none;">
+      <div class="field">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required autofocus>
+      </div>
+      <button class="btn btn--dark" type="submit" style="justify-content:center;">Log in</button>
+    </form>
+  </div>
+
+  <div id="admin-view" class="admin-wrap" hidden>
+    <div class="admin-head">
+      <h2 style="margin:0;">Edit prices</h2>
+      <button id="logout-btn" class="btn btn--ghost" style="color:var(--brown); border-color:var(--brown);">Log out</button>
+    </div>
+    <div id="save-banner" class="banner banner--ok"></div>
+    <form id="prices-form"></form>
+    <button id="save-btn" class="btn btn--dark" style="margin-top:26px;">Save prices</button>
+  </div>
+
+<script>
+(function () {
+  "use strict";
+
+  const loginView = document.getElementById("login-view");
+  const adminView = document.getElementById("admin-view");
+  const loginForm = document.getElementById("login-form");
+  const loginError = document.getElementById("login-error");
+  const pricesForm = document.getElementById("prices-form");
+  const saveBtn = document.getElementById("save-btn");
+  const saveBanner = document.getElementById("save-banner");
+  const logoutBtn = document.getElementById("logout-btn");
+
+  let catalog = [];
+
+  function showAdmin(show) {
+    loginView.hidden = show;
+    adminView.hidden = !show;
+  }
+
+  async function checkSession() {
+    const res = await fetch("/api/admin/session");
+    const data = await res.json();
+    if (data.logged_in) {
+      showAdmin(true);
+      await loadCatalog();
+    } else {
+      showAdmin(false);
+    }
+  }
+
+  loginForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    loginError.classList.remove("is-visible");
+    const password = document.getElementById("password").value;
+    try {
+      const res = await fetch("/api/admin/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ password }),
+      });
+      const data = await res.json();
+      if (!data.success) throw new Error(data.message || "Login failed.");
+      showAdmin(true);
+      await loadCatalog();
+    } catch (err) {
+      loginError.textContent = err.message;
+      loginError.classList.add("is-visible");
+    }
+  });
+
+  logoutBtn.addEventListener("click", async () => {
+    await fetch("/api/admin/logout", { method: "POST" });
+    showAdmin(false);
+  });
+
+  async function loadCatalog() {
+    const res = await fetch("/api/catalog");
+    const data = await res.json();
+    catalog = data.items || [];
+    renderForm();
+  }
+
+  function renderForm() {
+    const groups = catalog.reduce((acc, item) => {
+      (acc[item.group || "Other"] = acc[item.group || "Other"] || []).push(item);
+      return acc;
+    }, {});
+
+    pricesForm.innerHTML = Object.entries(groups)
+      .map(
+        ([groupName, items]) => `
+        <h3 style="margin-top:28px;">${groupName}</h3>
+        ${items
+          .map(
+            (item) => `
+          <div class="price-row">
+            <div>
+              <div class="price-row__name">${item.name}</div>
+              <div class="price-row__unit">${item.unit || ""}</div>
+            </div>
+            <div>KSh <input type="text" inputmode="numeric" data-price-id="${item.id}" value="${item.price}"></div>
+          </div>`
+          )
+          .join("")}`
+      )
+      .join("");
+  }
+
+  saveBtn.addEventListener("click", async () => {
+    const prices = {};
+    pricesForm.querySelectorAll("[data-price-id]").forEach((input) => {
+      prices[input.dataset.priceId] = input.value;
+    });
+
+    saveBtn.disabled = true;
+    saveBtn.textContent = "Saving…";
+    try {
+      const res = await fetch("/api/admin/save-prices", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ prices }),
+      });
+      const data = await res.json();
+      if (!data.success) throw new Error(data.message || "Could not save.");
+      catalog = data.items;
+      saveBanner.textContent = "Prices updated. Changes are live on the site immediately.";
+      saveBanner.className = "banner banner--ok is-visible";
+    } catch (err) {
+      saveBanner.textContent = err.message;
+      saveBanner.className = "banner banner--err is-visible";
+    } finally {
+      saveBtn.disabled = false;
+      saveBtn.textContent = "Save prices";
+    }
+  });
+
+  checkSession();
+})();
+</script>
+</body>
+</html>

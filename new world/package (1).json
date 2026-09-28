@@ -1,0 +1,12 @@
+{
+  "name": "sypher-coffee-joint",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sypher Coffee Joint — Vercel deployment (Node.js serverless functions + Upstash Redis)",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node test/run.js"
+  }
+}
